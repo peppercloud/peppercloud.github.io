@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ReactJS : Deep Dive with Components</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/web/development/2017/08/10/reactjs-deep-dive-handling-states.html">
+  <link rel="alternate" type="application/rss+xml" title="Pepper Cloud Tech Journal" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img class="brand-image" src="/assets/pepper-cloud-logo-sm.png"/></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <!-- <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div> -->
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">ReactJS : Deep Dive with Components</h1>
+    <p class="post-meta">
+      <time datetime="2017-08-10T20:54:14+08:00" itemprop="datePublished">
+        
+        Aug 10, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="/assets/images/1/react.svg" alt="React JS" class="img-smx" /></p>
+
+<p><a href="https://facebook.github.io/react/">ReactJS</a>, a JavaScript library from facebook engineers for building user interfaces, effectively, without compromising performance.
+In this Article, we will discuss about few aspects of reactjs , with an intent to showcase the features, which we find useful  for our internal product development.</p>
+
+<p>As we cover most of the part using es6 , it’s good, if you have a basic understanding of javascript and ES6 changes, if not, you can refer <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript">refreshing your JavaScript knowledge</a>, so that you can follow more easily.</p>
+
+<h3 id="components">Components</h3>
+
+<p>As React provides Component based UI development, which helps building encapsulated components that can manage their own states and compose can similar components to make complex UIs.</p>
+
+<p>There could be a clean separation of components for better application structure. As a design pattern, lets define these types -</p>
+
+<h4 id="presentation-component">Presentation Component</h4>
+
+<p>or can call it , just Components , which could be reused in multiple pages, or other complex components. Few features could be listed for their existence</p>
+
+<ul>
+  <li>Focus on View, <em>how it’s going to look</em>.</li>
+  <li>Have NO State.</li>
+  <li>Do not hold private data, <em>unless for UI only</em></li>
+  <li>No Mutable variables</li>
+  <li>Data are passed via properties.</li>
+  <li>Rarely focus on life cycle</li>
+  <li>Can be defined with Simple Functions also.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// ...</span>
+
+<span class="kd">function</span> <span class="nx">ToolbarItem</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">li</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="nx">em</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">icon</span><span class="p">}</span><span class="sr">/&gt;{props.data.name}&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">ToolbarItem</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">ToolbarItem</span><span class="p">;</span>
+<span class="c1">// ...</span></code></pre></figure>
+
+<h4 id="container-component">Container Component</h4>
+
+<p>Container components could be the normal react component or the most complex component. The responsibility  of container could include</p>
+
+<ul>
+  <li>Focus on State, <em>how its going to work/interact</em></li>
+  <li>Can have state , usually do have states</li>
+  <li>Can contains other components  or containers</li>
+  <li>Can handle routing</li>
+  <li>Can have its own route</li>
+  <li>Can dispatch actions and provides callbacks to presentational component</li>
+  <li>Provides data to child components</li>
+  <li>Can have Reducers to maintain the internal states</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// ...</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">Task</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span> 
+
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="na">element</span><span class="p">:</span><span class="s1">''</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">''</span><span class="p">};</span>
+  <span class="p">}</span>
+
+<span class="nx">changeTitle</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">title</span><span class="p">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span> <span class="p">});</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">validateTitle</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">validateTitle</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">titleError</span><span class="p">:</span> <span class="s2">"Title should contain some text!"</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span></code></pre></figure>
+
+<h4 id="pure-components">Pure Components</h4>
+
+<p>Pure components could be somewhat between the presentational and containers, but with decipline that should not mutate the data provided.
+It could be understood as</p>
+
+<ul>
+  <li>Having States , <em>Can be stateless too</em></li>
+  <li>Immutable external data</li>
+  <li>Returns same result given the same props and state</li>
+</ul>
+
+<p>Usually Pure component can perform better, if it so not have deep mutation of props or state.</p>
+
+<h3 id="advantages">Advantages</h3>
+
+<p>Following similar patterns could have some interesting behavior</p>
+
+<ul>
+  <li>Reusability : The components can be reused, specially presentational components.</li>
+  <li>Maintanability : Each components could easy be replaced with newer version or similar components</li>
+  <li>Testability : as having data being induced, so could be tested with different situations.</li>
+  <li>Seperation of Concerns : Can lead to better design of application and API’s</li>
+</ul>
+
+<p>Also, The components need not to generate the dom or handle the dom events directly, they can be understand as a layer of abstraction over native elements, which can focus on user experience.</p>
+
+<h3 id="life-cycle">Life Cycle</h3>
+
+<p>Life of a component is incomplete without knowing about life cycle. So just refreshing the documentation,</p>
+
+<p>React, have several lifecycle methods which could be overriden to intercept the behavior of components. It could be categorized as <em>Mounting</em>, <em>Updating</em> and <em>Unmounting</em></p>
+
+<h4 id="mounting">Mounting</h4>
+
+<p>Folowing methods are called when an instance of component is either created or inserted in the DOM on the usage</p>
+
+<ul>
+  <li>constructor()  : as normal es6 class, it will be called once instanciated</li>
+  <li>componentWillMount() : before mounting the component</li>
+  <li>render()</li>
+  <li>coponentDidMount() : immidiatly after the component mounted, so good place to fetch the remaining data</li>
+</ul>
+
+<h4 id="updating">Updating</h4>
+
+<ul>
+  <li>componentWillReceiveProps()</li>
+  <li>shouldComponentUpdate()</li>
+  <li>componentWillUpdate()</li>
+  <li>render()  : yes , again, as it will be called every time the state is changed</li>
+  <li>componentDidUpdate()</li>
+</ul>
+
+<h4 id="unmounting">Unmounting</h4>
+
+<ul>
+  <li>componentWillUnmount() : when unloading the component, so can finish or check some task before it render off.</li>
+</ul>
+
+<p>Hope, that you might have found some useful information. Thanks for reading.!</p>
+
+<p><strong>Further Readings</strong></p>
+
+<ol>
+  <li>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript">https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript</a> - Learn about basic Javascript</p>
+  </li>
+  <li>
+    <p><a href="https://frontendmasters.com/courses/javascript-foundations/">https://frontendmasters.com/courses/javascript-foundations/</a> Online Course - Javascript : If peppercloud engineer, the course can be provided for free.</p>
+  </li>
+  <li>
+    <p><a href="https://leanpub.com/understandinges6/read">https://leanpub.com/understandinges6/read</a> Book - Understanding ECMAScript 6</p>
+  </li>
+  <li>
+    <p><a href="https://www.udacity.com/course/react-nanodegree--nd019">https://www.udacity.com/course/react-nanodegree–nd019</a> Udacity Course on React (Nice one) , so again, If peppercloud engineer, the course can be provided for free.</p>
+  </li>
+</ol>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+   
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          
+            
+            <li><a href="mailto:techx@peppercloud.com">techx@peppercloud.com</a></li>
+            
+
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+
+          <li> <a href="http://www.peppercloud.com">Pepper Cloud</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Copyright © 2017 Pepper Cloud Pte Ltd. 
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

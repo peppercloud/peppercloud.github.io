@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-08-28T15:00:39+08:00</updated><id>/</id><title type="html">Pepper Cloud Tech Journal</title><subtitle>Copyright © 2017 Pepper Cloud Pte Ltd. 
+</subtitle><entry><title type="html">SailsJS - Practical Way!</title><link href="/web/development/2017/08/28/sailsjs-an-introduction-to-effective-development.html" rel="alternate" type="text/html" title="SailsJS - Practical Way!" /><published>2017-08-28T10:54:14+08:00</published><updated>2017-08-28T10:54:14+08:00</updated><id>/web/development/2017/08/28/sailsjs-an-introduction-to-effective-development</id><content type="html" xml:base="/web/development/2017/08/28/sailsjs-an-introduction-to-effective-development.html">&lt;p&gt;Building an effective yet powerful application is always challenging, when you have many options to choose from&lt;/p&gt;</content><author><name></name></author><summary type="html">Building an effective yet powerful application is always challenging, when you have many options to choose from</summary></entry><entry><title type="html">SailsJS - Working with Large Data!</title><link href="/web/development/2017/08/27/sailsjs-working-with-data.html" rel="alternate" type="text/html" title="SailsJS - Working with Large Data!" /><published>2017-08-27T11:45:14+08:00</published><updated>2017-08-27T11:45:14+08:00</updated><id>/web/development/2017/08/27/sailsjs-working-with-data</id><content type="html" xml:base="/web/development/2017/08/27/sailsjs-working-with-data.html">&lt;p&gt;In this post we’ll take a look at some of the data features Sails provides out-of-the-box, for easily making complex apps.&lt;/p&gt;</content><author><name></name></author><summary type="html">In this post we’ll take a look at some of the data features Sails provides out-of-the-box, for easily making complex apps.</summary></entry><entry><title type="html">ReactJS : Deep Dive with Components</title><link href="/web/development/2017/08/10/reactjs-deep-dive-handling-states.html" rel="alternate" type="text/html" title="ReactJS : Deep Dive with Components" /><published>2017-08-10T20:54:14+08:00</published><updated>2017-08-10T20:54:14+08:00</updated><id>/web/development/2017/08/10/reactjs-deep-dive-handling-states</id><content type="html" xml:base="/web/development/2017/08/10/reactjs-deep-dive-handling-states.html">&lt;p&gt;&lt;img src=&quot;/assets/images/1/react.svg&quot; alt=&quot;React JS&quot; class=&quot;img-smx&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://facebook.github.io/react/&quot;&gt;ReactJS&lt;/a&gt;, a JavaScript library from facebook engineers for building user interfaces, effectively, without compromising performance.
+In this Article, we will discuss about few aspects of reactjs , with an intent to showcase the features, which we find useful  for our internal product development.&lt;/p&gt;
+
+&lt;p&gt;As we cover most of the part using es6 , it’s good, if you have a basic understanding of javascript and ES6 changes, if not, you can refer &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript&quot;&gt;refreshing your JavaScript knowledge&lt;/a&gt;, so that you can follow more easily.&lt;/p&gt;
+
+&lt;h3 id=&quot;components&quot;&gt;Components&lt;/h3&gt;
+
+&lt;p&gt;As React provides Component based UI development, which helps building encapsulated components that can manage their own states and compose can similar components to make complex UIs.&lt;/p&gt;
+
+&lt;p&gt;There could be a clean separation of components for better application structure. As a design pattern, lets define these types -&lt;/p&gt;
+
+&lt;h4 id=&quot;presentation-component&quot;&gt;Presentation Component&lt;/h4&gt;
+
+&lt;p&gt;or can call it , just Components , which could be reused in multiple pages, or other complex components. Few features could be listed for their existence&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Focus on View, &lt;em&gt;how it’s going to look&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Have NO State.&lt;/li&gt;
+  &lt;li&gt;Do not hold private data, &lt;em&gt;unless for UI only&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;No Mutable variables&lt;/li&gt;
+  &lt;li&gt;Data are passed via properties.&lt;/li&gt;
+  &lt;li&gt;Rarely focus on life cycle&lt;/li&gt;
+  &lt;li&gt;Can be defined with Simple Functions also.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ToolbarItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;li&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;className&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&amp;gt;{props.data.name}&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;ToolbarItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;propTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ToolbarItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;container-component&quot;&gt;Container Component&lt;/h4&gt;
+
+&lt;p&gt;Container components could be the normal react component or the most complex component. The responsibility  of container could include&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Focus on State, &lt;em&gt;how its going to work/interact&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Can have state , usually do have states&lt;/li&gt;
+  &lt;li&gt;Can contains other components  or containers&lt;/li&gt;
+  &lt;li&gt;Can handle routing&lt;/li&gt;
+  &lt;li&gt;Can have its own route&lt;/li&gt;
+  &lt;li&gt;Can dispatch actions and provides callbacks to presentational component&lt;/li&gt;
+  &lt;li&gt;Provides data to child components&lt;/li&gt;
+  &lt;li&gt;Can have Reducers to maintain the internal states&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;changeTitle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;validateTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;validateTitle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;titleError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Title should contain some text!&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;pure-components&quot;&gt;Pure Components&lt;/h4&gt;
+
+&lt;p&gt;Pure components could be somewhat between the presentational and containers, but with decipline that should not mutate the data provided.
+It could be understood as&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Having States , &lt;em&gt;Can be stateless too&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Immutable external data&lt;/li&gt;
+  &lt;li&gt;Returns same result given the same props and state&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Usually Pure component can perform better, if it so not have deep mutation of props or state.&lt;/p&gt;
+
+&lt;h3 id=&quot;advantages&quot;&gt;Advantages&lt;/h3&gt;
+
+&lt;p&gt;Following similar patterns could have some interesting behavior&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Reusability : The components can be reused, specially presentational components.&lt;/li&gt;
+  &lt;li&gt;Maintanability : Each components could easy be replaced with newer version or similar components&lt;/li&gt;
+  &lt;li&gt;Testability : as having data being induced, so could be tested with different situations.&lt;/li&gt;
+  &lt;li&gt;Seperation of Concerns : Can lead to better design of application and API’s&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, The components need not to generate the dom or handle the dom events directly, they can be understand as a layer of abstraction over native elements, which can focus on user experience.&lt;/p&gt;
+
+&lt;h3 id=&quot;life-cycle&quot;&gt;Life Cycle&lt;/h3&gt;
+
+&lt;p&gt;Life of a component is incomplete without knowing about life cycle. So just refreshing the documentation,&lt;/p&gt;
+
+&lt;p&gt;React, have several lifecycle methods which could be overriden to intercept the behavior of components. It could be categorized as &lt;em&gt;Mounting&lt;/em&gt;, &lt;em&gt;Updating&lt;/em&gt; and &lt;em&gt;Unmounting&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;mounting&quot;&gt;Mounting&lt;/h4&gt;
+
+&lt;p&gt;Folowing methods are called when an instance of component is either created or inserted in the DOM on the usage&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;constructor()  : as normal es6 class, it will be called once instanciated&lt;/li&gt;
+  &lt;li&gt;componentWillMount() : before mounting the component&lt;/li&gt;
+  &lt;li&gt;render()&lt;/li&gt;
+  &lt;li&gt;coponentDidMount() : immidiatly after the component mounted, so good place to fetch the remaining data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;updating&quot;&gt;Updating&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;componentWillReceiveProps()&lt;/li&gt;
+  &lt;li&gt;shouldComponentUpdate()&lt;/li&gt;
+  &lt;li&gt;componentWillUpdate()&lt;/li&gt;
+  &lt;li&gt;render()  : yes , again, as it will be called every time the state is changed&lt;/li&gt;
+  &lt;li&gt;componentDidUpdate()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;unmounting&quot;&gt;Unmounting&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;componentWillUnmount() : when unloading the component, so can finish or check some task before it render off.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hope, that you might have found some useful information. Thanks for reading.!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Further Readings&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript&quot;&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript&lt;/a&gt; - Learn about basic Javascript&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://frontendmasters.com/courses/javascript-foundations/&quot;&gt;https://frontendmasters.com/courses/javascript-foundations/&lt;/a&gt; Online Course - Javascript : If peppercloud engineer, the course can be provided for free.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://leanpub.com/understandinges6/read&quot;&gt;https://leanpub.com/understandinges6/read&lt;/a&gt; Book - Understanding ECMAScript 6&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.udacity.com/course/react-nanodegree--nd019&quot;&gt;https://www.udacity.com/course/react-nanodegree–nd019&lt;/a&gt; Udacity Course on React (Nice one) , so again, If peppercloud engineer, the course can be provided for free.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Welcome</title><link href="/welcome/2017/08/01/welcome-to-peppercloud.html" rel="alternate" type="text/html" title="Welcome" /><published>2017-08-01T00:54:14+08:00</published><updated>2017-08-01T00:54:14+08:00</updated><id>/welcome/2017/08/01/welcome-to-peppercloud</id><content type="html" xml:base="/welcome/2017/08/01/welcome-to-peppercloud.html">&lt;p&gt;Welcome to the PepperCloud Technology Journal. Here, you can read posts written by Pepper Cloud engineers about their work and views of several technologies related to software development and artificial intelligence to help build the innovative products for people around the world. If you’re an enthusiastic software developer or AI researcher or student or engineer, we would love to hear your feedbacks and questions. Write us at &lt;a href=&quot;mailto:techx@peppercloud.com&quot;&gt;techx@peppercloud.com&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Welcome to the PepperCloud Technology Journal. Here, you can read posts written by Pepper Cloud engineers about their work and views of several technologies related to software development and artificial intelligence to help build the innovative products for people around the world. If you’re an enthusiastic software developer or AI researcher or student or engineer, we would love to hear your feedbacks and questions. Write us at techx@peppercloud.com</summary></entry></feed>
